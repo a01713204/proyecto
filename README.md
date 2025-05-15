@@ -1,2 +1,2 @@
 # Proyecto
-Proyecto integrador de programación orientada a objetos II. Donde se muestran las carcaterísticas de un equipo de fútbol
+Proyecto integrador de programación orientada a objetos II. Donde se muestran las carcaterísticas de un equipo de fútbol, conformado por 6 clases que están relacionadas entre sí, Delantero, Medio, Defensa, Portero, Jugador y Equipo. Para ello se implementan distintos métodos para dterminar la calidad de este y en un futuro poder hacer ajustes con el fin de mejorar el rendimiento y los resultados del equipo
