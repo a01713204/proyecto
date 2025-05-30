@@ -2,7 +2,6 @@
 #define JUGADOR_H
 
 #include <string>
-
 #include <sstream>
 #include <iostream>
 #include <vector>
@@ -11,106 +10,169 @@ using namespace std;
 // Clase madre de delantero, medio, defensa y portero
 class Jugador {
 protected: // modificador de acceso protected para que sus clases hijas puedan acceder a ellos
-    string nombre;
+    std::string nombre;
     int numero;
     int edad;
     int minutos_jugados;
-    string titular;  // sí o no
+    std::string titular;  // sí o no
     
 public: //Todos pueden acceder a esto
-    Jugador(string nom, int num, int ed, int min, string tit)
-        : nombre(nom), numero(num), edad(ed), minutos_jugados(min), titular(tit) {}
+    
+Jugador(); //constructor vacío
+Jugador(std::string nombre, int numero, int edad, int minutos_jugados, std::string titular);
 
-    virtual void atributos() = 0;//permite la sobreescritura. Que se pueda cambiar en clases hijas
-    virtual int puntos() = 0;
-    virtual ~Jugador() {}
-    int getNumero()  { 
-        return numero; 
-    }
-    string getNombre()  { 
-        return nombre; 
-    }
+    void setNombre(std::string);
+    void setNumero(int);
+    void setEdad(int);
+    void setMinutos_jugados(int);
+    void setTitular(std::string);
+
+    //Metodo muestra que se aplicará a todas las clases hijas
+    virtual void muestra();
 
 };
+Jugador::Jugador() : nombre(""), numero(0),edad(0), minutos_jugados(0), titular(""){}
+Jugador:: Jugador(std::string nombre, int numero, int edad, int minutos_jugados, std::string titular)
+    : nombre(nombre), numero(numero), edad(edad), minutos_jugados(minutos_jugados), titular(titular){}
+
+void Jugador::setNombre(std:: string name){
+    nombre=name;
+}
+void Jugador::setNumero(int number){
+    numero=number;
+}
+void Jugador::setEdad(int age){
+    edad=age;
+}
+void Jugador::setMinutos_jugados(int minutes_played){
+    minutos_jugados=minutes_played;
+}
+void Jugador::setTitular(std:: string tit){
+    titular=tit;
+}
+void Jugador:: muestra(){
+    std::cout << "nombre: "<< nombre << std::endl;
+    std::cout << "numero: "<< numero << std::endl;
+    std::cout << "edad: "<< edad << std::endl;
+    std:: cout << "minutos jugados: "<< minutos_jugados<<std::endl;
+    std::cout << "titular: "<< titular << std::endl;
+}
+
 
 class Delantero : public Jugador { //Aqui se implementa la herencia
-private: //Solo la clase delantero tiene acceso a estos atributos
-    int goles_anotados;
-
-public:
-    Delantero(string nom, int num, int ed, int min, string tit, int goles)
-        : Jugador(nom, num, ed, min, tit), goles_anotados(goles) {}
+    private: //Solo la clase delantero tiene acceso a estos atributos
+        int goles_anotados;
 
 
-    void atributos() override {//override sobreescribe el metodo virtual
-        cout << "Delantero: " << nombre<< "Numero: " <<numero <<"Minutos jugados: "<< minutos_jugados<< ", Goles: " << goles_anotados << endl;
-
-    }
-
-    void puntos() override {
-        int pts = goles_anotados *4; // 4 puntos por gol
-        cout << "Puntos del delantero " << nombre << " " << pts << endl;
-    }
+    public:
+        Delantero(std::string nombre, int numero, int edad, int minutos_jugados, std:: string titular, int goles_anotados);
+        void setGoles_anotados(int scored_goals);
+        void muestra();
 };
+
+Delantero::Delantero(std::string nombre, int numero, int edad, int minutos_jugados, std::string titular, int goles_anotados)
+    :Jugador(nombre, numero, edad, minutos_jugados, titular), goles_anotados(goles_anotados){}
+
+void Delantero:: setGoles_anotados(int scored_goals){
+    goles_anotados=scored_goals;
+}
+
+void Delantero::muestra(){
+    std::cout<<"nombre: "<<nombre<<std::endl;
+    std::cout<<"numero: "<<numero<<std::endl;
+    std::cout<<"edad: "<<edad<<std::endl;
+    std::cout<<"minutos jugados: "<<minutos_jugados<<std::endl;
+    std::cout<<"golesanotados: "<<goles_anotados<<std::endl;
+    std::cout<<"puntos: "<<goles_anotados*4<<std::endl;
+}
+
+
+
 
 // Clase Medio
 class Medio : public Jugador {
-private:
+private: //Solo la clase medio tiene acceso a estos atributos
     int asistencias;
 
+
 public:
-    Medio(string nom, int num, int ed, int min, string tit, int asist)
-        : Jugador(nom, num, ed, min, tit), asistencias(asist) {
-
-        }
-
-    void atributos() override {
-        cout << "Medio: " << nombre<< "Numero: " <<numero <<"Minutos jugados: "<< minutos_jugados<< ", Asistencias: " << asistencias << endl;
-
-    }
-
-    void puntos() override {
-        int pts = asistencias * 3; //dos puntos por asist
-        cout << "Puntos medio " << nombre << ": " << pts << endl;
-    }
+    Medio(std::string nombre, int numero, int edad, int minutos_jugados, std:: string titular, int asistencias);
+    void setAsistencias(int asists);
+    void muestra();
 };
+
+Medio::Medio(std::string nombre, int numero, int edad, int minutos_jugados, std::string titular, int asistencias)
+    :Jugador(nombre, numero, edad, minutos_jugados, titular), asistencias(asistencias){}
+
+void Medio:: setAsistencias(int asists){
+    asistencias=asists;
+}
+
+void Medio::muestra(){
+std::cout<<"nombre: "<<nombre<<std::endl;
+std::cout<<"numero: "<<numero<<std::endl;
+std::cout<<"edad: "<<edad<<std::endl;
+std::cout<<"minutos jugados: "<<minutos_jugados<<std::endl;
+std::cout<<"asistencias: "<<asistencias<<std::endl;
+std::cout<<"puntos: "<<asistencias*3<<std::endl;
+}
+
 
 
 class Defensa : public Jugador {
-private:
-    int recuperaciones; //dentras de la media cancha
+    private: //Solo la clase defensa tiene acceso a estos atributos
+    int recuperaciones;
+
 
 public:
-    Defensa(string nom, int num, int ed, int min, string tit, int recup)
-        : Jugador(nom, num, ed, min, tit), recuperaciones(recup) {}
-
-    void atributos() override {
-        cout << "Defensa: " << nombre<< "Numero: " <<numero <<"Minutos jugados: "<< minutos_jugados<< ", recuperaciones: " << recuperaciones << endl;
-
-    }
-
-    void puntos() override {
-        int pts = recuperaciones ; //un punto por asist
-        cout << "Puntos defensa " << nombre << ": " << pts << endl;
-    }
+    Defensa(std::string nombre, int numero, int edad, int minutos_jugados, std:: string titular, int recuperaciones);
+    void setRecuperaciones(int recup);
+    void muestra();
 };
+
+Defensa::Defensa(std::string nombre, int numero, int edad, int minutos_jugados, std::string titular, int recuperaciones)
+    :Jugador(nombre, numero, edad, minutos_jugados, titular), recuperaciones(recuperaciones){}
+
+void Defensa:: setRecuperaciones(int recup){
+    recuperaciones=recup;
+}
+
+void Defensa::muestra(){
+std::cout<<"nombre: "<<nombre<<std::endl;
+std::cout<<"numero: "<<numero<<std::endl;
+std::cout<<"edad: "<<edad<<std::endl;
+std::cout<<"minutos jugados: "<<minutos_jugados<<std::endl;
+std::cout<<"recuperaciones: "<<recuperaciones<<std::endl;
+std::cout<<"puntos: "<<recuperaciones*1<<std::endl;
+}
+
+
 
 
 class Portero : public Jugador {
-private:
+    private: //Solo la clase defensa tiene acceso a estos atributos
     int atajadas;
 
-public:
-    Portero(string nom, int num, int ed, int min, string tit, int ataj)
-        : Jugador(nom, num, ed, min, tit), atajadas(ataj) {}
 
-        void atributos() override {
-            cout << "Portero: " << nombre<< "Numero: " <<numero <<"Minutos jugados: "<< minutos_jugados<< ", Atajadas: " << atajadas << endl;
-    
-        }
-    
-        void puntos() override {
-            int pts = atajadas * 2; //dos puntos por asist
-            cout << "Puntos portero: " << nombre << " " << pts << endl;
-        }
+public:
+    Portero(std::string nombre, int numero, int edad, int minutos_jugados, std:: string titular, int atajadas);
+    void setAtajadas(int saves);
+    void muestra();
 };
+
+Portero::Portero(std::string nombre, int numero, int edad, int minutos_jugados, std::string titular, int atajadas)
+    :Jugador(nombre, numero, edad, minutos_jugados, titular), atajadas(atajadas){}
+
+void Portero:: setAtajadas(int saves){
+    atajadas=saves;
+}
+
+void Portero::muestra(){
+std::cout<<"nombre: "<<nombre<<std::endl;
+std::cout<<"numero: "<<numero<<std::endl;
+std::cout<<"edad: "<<edad<<std::endl;
+std::cout<<"minutos jugados: "<<minutos_jugados<<std::endl;
+std::cout<<"atajadas: "<<atajadas<<std::endl;
+std::cout<<"puntos: "<<atajadas*2<<std::endl;
+}
+#endif
