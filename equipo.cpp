@@ -16,57 +16,88 @@ int main() {
 
     Equipo equipo(valor, entrenador, capacidad);
 
-    for (int i = 0; i < capacidad; ++i) {
-        int tipo, numero, edad, minutos, extra;
-        std::string nombre, titular;
+    Jugador* d = new Delantero("Leo", 10, 35, 90, "sí", 2);
+    Jugador* m = new Medio("Andres", 8, 32, 85, "sí", 1);
+    Jugador* def = new Defensa("Carlos", 4, 30, 90, "no", 5);
+    Jugador* p = new Portero("Memo", 1, 36, 90, "sí", 7);
 
-        std::cout << "\nJugador #" << i+1 << std::endl;
-        std::cout << "Tipo (1=Delantero, 2=Medio, 3=Defensa, 4=Portero): ";
-        std::cin >> tipo;
+    equipo.agregarJugador(d);
+    equipo.agregarJugador(m);
+    equipo.agregarJugador(def);
+    equipo.agregarJugador(p);
 
-        std::cout << "Nombre (una sola palabra): ";
-        std::cin >> nombre;
+    std::string opcion;
 
-        std::cout << "Número: ";
-        std::cin >> numero;
+    while (true) {
+        std::cout << "\n Menu -\n";
+        std::cout << "1. Agregar jugador\n";
+        std::cout << "2. Mostrar información del equipo y los puntos por jugador\n";
+        std::cout << "3. Salir\n";
+        std::cout << "Cual quieres realizar? (1, 2 o 3) ";
+        std::cin >> opcion;
 
-        std::cout << "Edad: ";
-        std::cin >> edad;
+        if (opcion == "1") {
+            if (capacidad == equipo.getContador()) {
+                std::cout << "El equipo ya está lleno. No se pueden agregar más jugadores.\n";
+                continue;
+            }
 
-        std::cout << "Minutos jugados: ";
-        std::cin >> minutos;
+            int tipo, numero, edad, minutos, extra;
+            std::string nombre, titular;
 
-        std::cout << "¿Titular? (sí/no) ";
-        std::cin >> titular;
+            std::cout << "\nTipo de jugador (1=Delantero, 2=Medio, 3=Defensa, 4=Portero): ";
+            std::cin >> tipo;
 
-        Jugador* jugador;
+            std::cout << "Nombre (una sola palabra): ";
+            std::cin >> nombre;
 
-        if (tipo == 1) {
-            std::cout << "Goles anotados: ";
-            std::cin >> extra;
-            jugador = new Delantero(nombre, numero, edad, minutos, titular, extra);
-        } else if (tipo == 2) {
-            std::cout << "Asistencias: ";
-            std::cin >> extra;
-            jugador = new Medio(nombre, numero, edad, minutos, titular, extra);
-        } else if (tipo == 3) {
-            std::cout << "Recuperaciones: ";
-            std::cin >> extra;
-            jugador = new Defensa(nombre, numero, edad, minutos, titular, extra);
-        } else if (tipo == 4) {
-            std::cout << "Atajadas: ";
-            std::cin >> extra;
-            jugador = new Portero(nombre, numero, edad, minutos, titular, extra);
+            std::cout << "Número: ";
+            std::cin >> numero;
+
+            std::cout << "Edad: ";
+            std::cin >> edad;
+
+            std::cout << "Minutos jugados: ";
+            std::cin >> minutos;
+
+            std::cout << "¿Titular? (sí/no): ";
+            std::cin >> titular;
+
+            Jugador* jugador = 0;
+
+            if (tipo == 1) {
+                std::cout << "Goles anotados: ";
+                std::cin >> extra;
+                jugador = new Delantero(nombre, numero, edad, minutos, titular, extra);
+            } else if (tipo == 2) {
+                std::cout << "Asistencias: ";
+                std::cin >> extra;
+                jugador = new Medio(nombre, numero, edad, minutos, titular, extra);
+            } else if (tipo == 3) {
+                std::cout << "Recuperaciones: ";
+                std::cin >> extra;
+                jugador = new Defensa(nombre, numero, edad, minutos, titular, extra);
+            } else if (tipo == 4) {
+                std::cout << "Atajadas: ";
+                std::cin >> extra;
+                jugador = new Portero(nombre, numero, edad, minutos, titular, extra);
+            } else {
+                std::cout << "Tipo no válido.\n";
+                continue;
+            }
+
+            equipo.agregarJugador(jugador);
+
+        } else if (opcion == "2") {
+            equipo.mostrarJugadores();
+        } else if (opcion == "3") {
+            std::cout << "Nos vemos \n";
+            break;
         } else {
-            std::cout << "Tipo no válido. Jugador omitido.\n";
-            continue;
+            std::cout << "Opcion no válida, intenta de nuevo.\n";
         }
-
-        equipo.agregarJugador(jugador);
     }
-
-    std::cout << " INFORMACIÓN DEL EQUIPO"<< std::endl;
-    equipo.mostrarJugadores();
 
     return 0;
 }
+
