@@ -2,24 +2,70 @@
 #include "jugador.h"
 
 int main() {
-    // Crear un equipo con capacidad para 5 jugadores
-    Equipo equipo(250000000, "Diego Simeone", 5);
+    int capacidad, valor;
+    std::string entrenador;
 
-    // Crear jugadores de diferentes posiciones
-    Jugador* delantero1 = new Delantero("Luis Suárez", 9, 35, 480, "sí", 18);
-    Jugador* medio1 = new Medio("Koke", 6, 30, 520, "sí", 9);
-    Jugador* defensa1 = new Defensa("José Giménez", 2, 27, 500, "sí", 65);
-    Jugador* portero1 = new Portero("Jan Oblak", 13, 29, 540, "sí", 42);
-    Jugador* delantero2 = new Delantero("Antoine Griezmann", 7, 31, 490, "sí", 15);
+    std::cout << "Ingresa la capacidad del equipo: ";
+    std::cin >> capacidad;
 
-    // Agregar jugadores al equipo
-    equipo.agregarJugador(delantero1);
-    equipo.agregarJugador(medio1);
-    equipo.agregarJugador(defensa1);
-    equipo.agregarJugador(portero1);
-    equipo.agregarJugador(delantero2);
+    std::cout << "Ingresa el valor del equipo en pesos: ";
+    std::cin >> valor;
 
-    // Mostrar información del equipo
+    std::cout << "Nombre del entrenador (una sola palabra): ";
+    std::cin >> entrenador;
+
+    Equipo equipo(valor, entrenador, capacidad);
+
+    for (int i = 0; i < capacidad; ++i) {
+        int tipo, numero, edad, minutos, extra;
+        std::string nombre, titular;
+
+        std::cout << "\nJugador #" << i+1 << std::endl;
+        std::cout << "Tipo (1=Delantero, 2=Medio, 3=Defensa, 4=Portero): ";
+        std::cin >> tipo;
+
+        std::cout << "Nombre (una sola palabra): ";
+        std::cin >> nombre;
+
+        std::cout << "Número: ";
+        std::cin >> numero;
+
+        std::cout << "Edad: ";
+        std::cin >> edad;
+
+        std::cout << "Minutos jugados: ";
+        std::cin >> minutos;
+
+        std::cout << "¿Titular? (sí/no) ";
+        std::cin >> titular;
+
+        Jugador* jugador;
+
+        if (tipo == 1) {
+            std::cout << "Goles anotados: ";
+            std::cin >> extra;
+            jugador = new Delantero(nombre, numero, edad, minutos, titular, extra);
+        } else if (tipo == 2) {
+            std::cout << "Asistencias: ";
+            std::cin >> extra;
+            jugador = new Medio(nombre, numero, edad, minutos, titular, extra);
+        } else if (tipo == 3) {
+            std::cout << "Recuperaciones: ";
+            std::cin >> extra;
+            jugador = new Defensa(nombre, numero, edad, minutos, titular, extra);
+        } else if (tipo == 4) {
+            std::cout << "Atajadas: ";
+            std::cin >> extra;
+            jugador = new Portero(nombre, numero, edad, minutos, titular, extra);
+        } else {
+            std::cout << "Tipo no válido. Jugador omitido.\n";
+            continue;
+        }
+
+        equipo.agregarJugador(jugador);
+    }
+
+    std::cout << " INFORMACIÓN DEL EQUIPO"<< std::endl;
     equipo.mostrarJugadores();
 
     return 0;
