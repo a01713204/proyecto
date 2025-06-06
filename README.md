@@ -1,4 +1,23 @@
-# Proyecto
-Este proyecto consiste en el desarrollo de un sistema en C++ que modela las características de un equipo de fútbol mediante la aplicación de los principios de la programación orientada a objetos (POO). El sistema está conformado por seis clases interrelacionadas: Jugador (clase abstracta), y sus subclases especializadas Delantero, Medio, Defensa y Portero, además de la clase Equipo, que agrupa a los jugadores bajo una estructura organizada.
-El proyecto permite registrar información detallada de cada jugador, como su nombre, edad, número, minutos jugados y estadísticas específicas según su posición (goles, asistencias, recuperaciones o atajadas). Además, se calculan puntos de desempeño con base en estos datos, lo que permite evaluar la calidad individual y colectiva del equipo.
-A través de una interfaz por consola, el usuario puede ingresar los datos del equipo y sus integrantes. Esto abre la posibilidad de realizar un análisis más profundo para, en el futuro, ajustar la alineación o realizar mejoras estratégicas que optimicen el rendimiento y los resultados del equipo.
+## Proyecto Equipo de Fútbol
+Este proyecto está desarrollado como referencia para los alumnos de TC1030. Modela la estructura de un equipo de fútbol profesional, permitiendo registrar jugadores de distintas posiciones (delantero, medio, defensa y portero), cada uno con sus propios atributos y lógica de cálculo de puntos.
+El programa implementa una jerarquía de clases con una clase abstracta Jugador y clases derivadas que representan los diferentes tipos de jugadores. También se cuenta con una clase Equipo que gestiona la composición del equipo y la información de su entrenador.
+
+# Funcionalidad
+El programa permite realizar las siguientes acciones desde un menú en consola:
+Agregar nuevos jugadores al equipo (si no se ha alcanzado la capacidad máxima)
+Mostrar la información completa del equipo y los puntos obtenidos por cada jugador
+Salir del programa
+Cada jugador tiene atributos como nombre, número, edad, minutos jugados y si es titular. Además, cada posición tiene atributos adicionales como:
+Delantero: goles anotados
+Medio: asistencias
+Defensa: recuperaciones
+Portero: atajadas
+El puntaje de cada jugador se calcula según su posición y desempeño.
+
+# Consideraciones
+El programa corre en consola y está hecho en C++ estándar, por lo que puede ejecutarse en cualquier sistema operativo.
+Utiliza programación orientada a objetos con herencia, clases abstractas y polimorfismo.
+La capacidad del equipo y los datos del entrenador se ingresan al inicio del programa.
+Se cargan automáticamente 4 jugadores iniciales al arrancar el programa, uno por cada posición.
+# Compilacion
+g++ jugador.h equipo.h equipo.cpp
