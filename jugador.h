@@ -28,7 +28,7 @@ Jugador(std::string nombre, int numero, int edad, int minutos_jugados, std::stri
     void setTitular(std::string);
 
     //Metodo muestra que se aplicará a todas las clases hijas
-    virtual void muestra()=0;
+    virtual void muestra()=0;//metodo virtual puro
 
 };
 Jugador::Jugador() : nombre(""), numero(0),edad(0), minutos_jugados(0), titular(""){}
