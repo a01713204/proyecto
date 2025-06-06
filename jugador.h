@@ -23,12 +23,12 @@ Jugador(std::string nombre, int numero, int edad, int minutos_jugados, std::stri
 
     void setNombre(std::string);
     void setNumero(int);
-    void setEdad(int);
+    void setEdad(int); 
     void setMinutos_jugados(int);
     void setTitular(std::string);
 
     //Metodo muestra que se aplicará a todas las clases hijas
-    virtual void muestra();
+    virtual void muestra()=0;
 
 };
 Jugador::Jugador() : nombre(""), numero(0),edad(0), minutos_jugados(0), titular(""){}
@@ -50,13 +50,8 @@ void Jugador::setMinutos_jugados(int minutes_played){
 void Jugador::setTitular(std:: string tit){
     titular=tit;
 }
-void Jugador:: muestra(){
-    std::cout << "nombre: "<< nombre << std::endl;
-    std::cout << "numero: "<< numero << std::endl;
-    std::cout << "edad: "<< edad << std::endl;
-    std:: cout << "minutos jugados: "<< minutos_jugados<<std::endl;
-    std::cout << "titular: "<< titular << std::endl;
-}
+// Jugador en una clase abstracta, lo cual impide que se creen objetos directamente de esta clase y obliga a las clases hijas (Delantero, Medio, Defensa, Portero) a implementar su propia versión de muestra().
+
 
 
 class Delantero : public Jugador { //Aqui se implementa la herencia
