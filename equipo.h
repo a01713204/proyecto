@@ -7,7 +7,7 @@
 
 class Equipo {
     private:
-        Jugador**jugadores;
+        Jugador**jugadores;//dinamico, polimorfismo
         int capacidad;
         int valor; //cuanto vale el equipo en pesos$$
         std::string entrenador;
