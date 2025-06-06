@@ -17,6 +17,7 @@ class Equipo {
     Equipo(int valor, std:: string entrenador, int capacidad);
     void agregarJugador(Jugador* jugador);//Cambiado a puntero
     void mostrarJugadores();
+    int getContador();
 };
 
 Equipo::Equipo(int valor, std::string entrenador, int capacidad): valor(valor), entrenador(entrenador), capacidad(capacidad), contador(0){
@@ -40,6 +41,9 @@ void Equipo::mostrarJugadores() {
         jugadores[i]->muestra();  // Polimorfismo
         std::cout << " " << std::endl;
     }
+}
+int Equipo::getContador(){
+    return contador;
 }
 
 #endif //Equipo_H
