@@ -5,7 +5,7 @@ int main() {
     int capacidad, valor;
     std::string entrenador;
 
-    std::cout << "Ingresa la capacidad del equipo: ";
+    std::cout << "Ingresa la capacidad del equipo, toma en cuenta que el equipo ya tiene 4 jugadores";
     std::cin >> capacidad;
 
     std::cout << "Ingresa el valor del equipo en pesos: ";
