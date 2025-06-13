@@ -1,3 +1,11 @@
+/*
+ *
+ * Proyecto Gestion de un equipo de fútbol
+ * Pablo Torres Dávila Galindo
+ * A01713204
+ * 12/06/2025
+ */
+#include <iostream>
 #include "equipo.h"
 #include "jugador.h"
 
@@ -5,7 +13,7 @@ int main() {
     int capacidad, valor;
     std::string entrenador;
 
-    std::cout << "Ingresa la capacidad del equipo, toma en cuenta que el equipo ya tiene 4 jugadores";
+    std::cout << "Ingresa la capacidad del equipo, toma en cuenta que el equipo ya tiene 4 jugadores, por lo que debería ser 4 o mas: ";
     std::cin >> capacidad;
 
     std::cout << "Ingresa el valor del equipo en pesos: ";
