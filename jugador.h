@@ -1,3 +1,12 @@
+/*
+ *
+ * Proyecto Gestion de un equipo de fútbol
+ * Pablo Torres Dávila Galindo
+ * A01713204
+ * 12/06/2025
+ * versio : 2
+ */
+
 #ifndef JUGADOR_H
 #define JUGADOR_H
 
@@ -7,15 +16,16 @@
 #include <vector>
 using namespace std;
 
-// Clase madre de delantero, medio, defensa y portero
+// Clase madre de delantero, medio, defensa y portero. Tambien es nuestra clase abstracta
 class Jugador {
+    //declaramos variables de jugador
 protected: // modificador de acceso protected para que sus clases hijas puedan acceder a ellos
     std::string nombre;
     int numero;
     int edad;
     int minutos_jugados;
     std::string titular;  // sí o no
-    
+ // Declaramos los metodos que tendrá nuestra clase abstracta   
 public: //Todos pueden acceder a esto
     
 Jugador(); //constructor vacío
@@ -28,7 +38,7 @@ Jugador(std::string nombre, int numero, int edad, int minutos_jugados, std::stri
     void setTitular(std::string);
 
     //Metodo muestra que se aplicará a todas las clases hijas
-    virtual void muestra()=0;
+    virtual void muestra()=0;// metodo que será sobreescrito
 
 };
 Jugador::Jugador() : nombre(""), numero(0),edad(0), minutos_jugados(0), titular(""){}
@@ -54,11 +64,11 @@ void Jugador::setTitular(std:: string tit){
 
 
 
-class Delantero : public Jugador { //Aqui se implementa la herencia
+class Delantero : public Jugador { //Aqui se implementa la herencia de la clase jugador
     private: //Solo la clase delantero tiene acceso a estos atributos
         int goles_anotados;
 
-
+    //metodos del objeto
     public:
         Delantero(std::string nombre, int numero, int edad, int minutos_jugados, std:: string titular, int goles_anotados);
         void setGoles_anotados(int scored_goals);
@@ -71,7 +81,7 @@ Delantero::Delantero(std::string nombre, int numero, int edad, int minutos_jugad
 void Delantero:: setGoles_anotados(int scored_goals){
     goles_anotados=scored_goals;
 }
-
+//aplicamos el metodo virtual de nuestra clase abstracta
 void Delantero::muestra(){
     std::cout<<"nombre: "<<nombre<<std::endl;
     std::cout<<"numero: "<<numero<<std::endl;
@@ -84,7 +94,7 @@ void Delantero::muestra(){
 
 
 
-// Clase Medio
+// Clase Medio que hereda de jugador
 class Medio : public Jugador {
 private: //Solo la clase medio tiene acceso a estos atributos
     int asistencias;
@@ -102,7 +112,7 @@ Medio::Medio(std::string nombre, int numero, int edad, int minutos_jugados, std:
 void Medio:: setAsistencias(int asists){
     asistencias=asists;
 }
-
+//aplicamos el metodo virtual con los atributos de medio
 void Medio::muestra(){
 std::cout<<"nombre: "<<nombre<<std::endl;
 std::cout<<"numero: "<<numero<<std::endl;
@@ -113,7 +123,7 @@ std::cout<<"puntos: "<<asistencias*3<<std::endl;
 }
 
 
-
+//Aplicamos el procedimiento como lo hicimos con delantero y medio para defensa y portero con sus características
 class Defensa : public Jugador {
     private: //Solo la clase defensa tiene acceso a estos atributos
     int recuperaciones;
@@ -146,7 +156,7 @@ std::cout<<"puntos: "<<recuperaciones*1<<std::endl;
 
 class Portero : public Jugador {
     private: //Solo la clase defensa tiene acceso a estos atributos
-    int atajadas;
+    int atajadas; //solo el portero las hace
 
 
 public:
