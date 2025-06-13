@@ -20,4 +20,7 @@ Utiliza programación orientada a objetos con herencia, clases abstractas y poli
 La capacidad del equipo y los datos del entrenador se ingresan al inicio del programa.
 Se cargan automáticamente 4 jugadores iniciales al arrancar el programa, uno por cada posición.
 ### Compilacion
-g++ jugador.h equipo.h equipo.cpp
+g++ equipo.cpp -o ./equipo.exe
+
+./equipo.exe
+
