@@ -14,6 +14,8 @@ Defensa: recuperaciones
 Portero: atajadas
 El puntaje de cada jugador se calcula según su posición y desempeño.
 
+El programa deja de funcionar si no se usan comandos para incluir la clase madre, si se le ingresa una variable que no sea del tipo que pide, si los métodos no se implementan de forma correcta, si no se incluyen ciertas librerías, si se intenta agregar un jugador y el equipo está lleno, etc.
+
 ### Consideraciones
 El programa corre en consola y está hecho en C++ estándar, por lo que puede ejecutarse en cualquier sistema operativo.
 Utiliza programación orientada a objetos con herencia, clases abstractas y polimorfismo.
